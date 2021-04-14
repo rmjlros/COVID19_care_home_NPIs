@@ -19,11 +19,12 @@ require(readxl)
 require(dplyr)
 require(ggplot2)
 library(reshape2)
-library(magrittr)
-library(pomp)
-library(gridExtra)
-library(patchwork)
-library(qs)
+require(magrittr)
+require(pomp)
+require(gridExtra)
+require(patchwork)
+require(qs)
+require(data.table)
 
 
 ### CQC data
