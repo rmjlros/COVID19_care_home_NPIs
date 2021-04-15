@@ -1,6 +1,6 @@
 ### define stochastic model, for use with euler.sim, see ?euler.sim
 
-SIS.sim.c <- '
+SIS.sim.c <- "
 
 // DECLARE COMPOSIT PARAMETERS
 
@@ -1571,4 +1571,4 @@ S1Entries += NewRs;
 S2Exits += exitSs2+exitEs2+exitIpcpis2+exitIpcs2+exitIas2+exitIapis2+exitIchpi1s2+exitIchpi2s2+exitAs2+exitRs2;
 
 
-'
+"
