@@ -6,6 +6,11 @@
 # R script to run model using parameter sets outputted in "01_run_parameter_sets.R". Outputs produced are scenario comparisons
 
 
+#### load packages
+require(dplyr)
+require(data.table)
+require(pomp)
+
 
 #### paths
 Output_params<-"Outputs/Params/"
@@ -15,7 +20,8 @@ initialiser<-"00_initialiser.R"
 param_combo<-"00_prep_parameter_combo.R"
 model_function_uncertainty<-"00_model_function_uncertainty.R"
 
-### model function to run model with uncertainty in outputs
+
+#### model function to run model with uncertainty in outputs
 source(model_function_uncertainty)
 
 

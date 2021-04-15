@@ -7,7 +7,7 @@
 
 
 
-### prep
+### PREP
 
 # clear environment
 rm(list = ls(all = TRUE))	
@@ -18,12 +18,13 @@ Plots<-"Plots/"
 
 # packages
 require(ggplot2)
-library(gridExtra)
-# library(patchwork)
+require(gridExtra)
+require(patchwork)
+require(dplyr)
+require(reshape2)
 
 
-
-### READ IN FULL MODEL OUTPUTS
+### READ IN MODEL OUTPUTS
 
 all_dfs<-list()
 
@@ -103,13 +104,12 @@ table(df_all$interventions)
 df_all$big_table<-paste(df_all$R0, df_all$cprev, df_all$interventions, sep=", ")
 
 
-
 ### NAME THE SCENARIO
 
 name_scenario<-"community_prev"
 
 
-### FILTER DEPENDING ON WHAT WE ARE LOOKING AT
+### MAX 100 DAYS
 
 df1<-df_all
 max_time<-100
@@ -253,7 +253,6 @@ plot_1<-(p_O_r+
            theme(legend.position = "none")+
            ggtitle("a")+
            p_LO_r+
-           # theme(legend.position = "none")+
            ggtitle("b")+
            p_nIc+
            theme(legend.position = "none")+
@@ -262,5 +261,5 @@ plot_1<-(p_O_r+
 
 
 ## save plot
-ggsave(plot_1, file=paste0(Plots, Sys.Date(),"_plot_", name_scenario, "_", max_time, "d",".png"), width = 12, height=10)
+ggsave(plot_1, file=paste0(Plots, Sys.Date(),"Fig2.png"), width = 12, height=10)
 

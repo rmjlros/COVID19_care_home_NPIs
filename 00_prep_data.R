@@ -3,7 +3,7 @@
 # Alicia Rosello (2021)
 # https://github.com/rmjlros/COVID19_care_home_NPIs
 
-# R script to read in publicly available data, format, and load packages
+# R script to read in publicly available data and format
 
 wdir<-"~/Documents/GitHub/COVID19_care_home_NPIs/"
 setwd(wdir)
@@ -12,19 +12,6 @@ setwd(wdir)
   
 deaths_ONS_file<-"Data/julydeathsinvolvingcovid19inthecaresectordataset02072020155122_CLEAN.xlsx"
 CQC_care_home_data<-"Data/01_December_2020_HSCA_Active_Locations.xlsx"
-
-
-### load packages
-require(readxl)
-require(dplyr)
-require(ggplot2)
-library(reshape2)
-require(magrittr)
-require(pomp)
-require(gridExtra)
-require(patchwork)
-require(qs)
-require(data.table)
 
 
 ### CQC data

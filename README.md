@@ -2,9 +2,6 @@
 
 Data and `R` code to support Rosello *et al.*, (2021). Impact of non-pharmaceutical interventions on SARS-CoV-2 outbreaks in English care homes: a modelling study. *The Lancet Public Health* (submitted). 
 
-To cite this repo:
-  
-
 
 --------------------------------------------------------------------------------
   
@@ -12,7 +9,7 @@ To cite this repo:
 
   This study simulates SARS-CoV-2 transmission in an English care home and evaluates the probability of an outbreak over time for a care home with non-pharmaceutical interventions (NPIs) already in place. The model includes resident hospitalisation, testing of residents and staff, isolation of residents, absence and replacement of staff, and resident death. 
   
-  The authors evaluate the relative importance of the different routes of importation to the care home: from hospital through the hospitalisation of residents, from the community through visitors, and from the community through staff. They also address the impact of impact of additional control measures, namely: increasing staff and resident testing frequency, using lateral flow antigen testing (LFD) tests instead of PCR, enhancing infection prevention and control (IPC), increasing the proportion of residents isolated, shortening the delay to isolation, improving the effectiveness of isolation, restricting visitors and limiting staff to working in one care home.
+  The authors evaluate the relative importance of the different routes of importation to the care home: from hospital through the hospitalisation of residents, from the community through visitors, and from the community through staff. They also address the impact of additional control measures, namely: increasing staff and resident testing frequency, using lateral flow antigen testing tests instead of PCR, enhancing infection prevention and control, increasing the proportion of residents isolated, shortening the delay to isolation, improving the effectiveness of isolation, restricting visitors and limiting staff to working in one care home.
 
 --------------------------------------------------------------------------------
   
@@ -21,52 +18,65 @@ To cite this repo:
   A description of each file and folder is provided below. 
   
   
-##### *Sourced scripts*
-
-  All script names starting by "00_" denote scrips tha are not to be run alone but are sourced by other scripts. 
-
-* **00_prep_data.R:** `R` script to read in publicly available data, format, and load packages. Unpublished data is hard-coded.
-
-* **00_prep_parameter_means.R:** `R` script to define parameter means.
-
-* **00_prep_parameter_draws.R:** `R` script to draw parameters from distributions.
-
-* **00_prep_parameter_combo.R:** `R` script to combine parameters.
-
-* **00_prep_run_name.R:** `R` script to name a model run.
-
-* **00_prep_baseline_parameters.R:** `R` script to define baseline parameters.
-
-* **00_initialiser.R:** `R` script to define initial conditions of model simulation.
-
-* **00_model.R:** `R` script to define transmission model.
-
-* **00_model_function_uncertainty.R:** `R` script to define a function that runs model and outputs results with uncertainty.
+**Sourced scripts**
 
 
-##### *Scripts to run*
+  All script names starting by `00_` denote scrips that are not to be run alone but are sourced by other scripts. 
 
-* **01_run_parametr_sets.R:** `R` script that runs parameter sets and outputs these to `Outputs/Params`.
+* **`00_prep_data.R`:** `R` script to read in publicly available data and format it. Unpublished data was analysed separately, the results of which are provided hard-coded only for the dates required.
 
-* **02_run_model_with_uncertainty_scenarios.R:** `R` script that runs model and outputs results for all scenarios with uncertainty, stored in `Outputs/Model`. This script utilises the parameter sets outputted by `"01_run_parameter_sets.R"`. 
+* **`00_prep_parameter_means.R`:** `R` script to define parameter means and fixed parameter values.
 
-* **03_run_model_with_uncertainty_tests.R:** `R` script that runs model and outputs results for all testing strategies considered with uncertainty, stored in `Outputs/Model`. This script utilises the parameter sets outputted by `"01_run_parameter_sets.R"`.
+* **`00_prep_parameter_draws.R`:** `R` script to draw parameters from distributions, define extreme parameter values for sensitivity analysis, and aggregate parameters into matrix.
 
-* **04_run_model_with_uncertainty_IPC_other.R:** `R` script that runs model and outputs results for all other IPC strategies considered with uncertainty, stored in `Outputs/Model`. This script utilises the parameter sets outputted by `"01_run_parameter_sets.R"`.
+* **`00_prep_parameter_combo.R`:** `R` script to combine parameters.
+
+* **`00_prep_run_name.R`:** `R` script to name a model run.
+
+* **`00_prep_baseline_parameters.R`:** `R` script to define the parameters of the baseline scenario.
+
+* **`00_initialiser.R`:** `R` script to define initial conditions of model simulation.
+
+* **`00_model.R`:** `R` script to define transmission model.
+
+* **`00_model_function_uncertainty.R`:** `R` script to define a function that runs model and outputs results with uncertainty.
 
 
-##### *Foulders*
-
-* **Data:** a folder containing the data needed for analysis. Note that SUS data is not public and therefore has not been included here. 
-
-* **Outputs:** a folder to save the model outputs generated by the `R` scripts. 
-
-* **Plots:** a folder to save the figures generated by the `R` scripts.
+**Scripts to run**
 
 
-##### *Project*
+  `01_run_parameter_sets.R` outputs the parameter sets which are read in by all script names starting by `02_`. Script names starting by `02_`, in turn, output model results which are then read in by script names starting by `03_`. Scripts names starting by `03_` output the paper figures. 
 
-* **COVID19_care_home_NPIs.Rproj:** An `RStudio` project file, to avoid having to set your working directory to the hydromet_dengue folder on your computer. 
+
+* **`01_run_parameter_sets.R`:** `R` script that runs parameter sets and outputs these to `Outputs/Params`.
+
+* **`02_run_model_with_uncertainty_scenarios.R`:** `R` script that runs model and outputs results for all scenarios with uncertainty, stored in `Outputs/Model`. This script reads in the parameter sets outputted by `01_run_parameter_sets.R`. 
+
+* **`02_run_model_with_uncertainty_tests.R`:** `R` script that runs model and outputs results for all testing strategies considered with uncertainty, stored in `Outputs/Model`. This script reads in the parameter sets outputted by `01_run_parameter_sets.R`.
+
+* **`02_run_model_with_uncertainty_IPC_other.R`:** `R` script that runs model and outputs results for all other IPC strategies considered with uncertainty, stored in `Outputs/Model`. This script reads in the parameter sets outputted by running `01_run_parameter_sets.R`.
+
+* **`03_figure_2.R`:** `R` script that plots Figure 2, stored in `Plots`. This script reads in model results outputted by  `02_run_model_with_uncertainty_scenarios.R`.
+
+* **`03_figure_3.R`:** `R` script that plots Figure 3, stored in `Plots`. This script reads in model results outputted by  `02_run_model_with_uncertainty_scenarios.R`.
+
+* **`03_figure_4.R`:** `R` script that plots Figure 4, stored in `Plots`. This script reads in model results outputted by  `02_run_model_with_uncertainty_tests.R`.
+
+* **`03_figure_5.R`:** `R` script that plots Figure 5, stored in `Plots`. This script reads in model results outputted by  `02_run_model_with_uncertainty_IPC_other.R`.
+
+
+**Folders**
+
+* **`Data`:** a folder containing the public data needed for analysis. Note that SUS data is not public and therefore has not been included here. 
+
+* **`Outputs`:** a folder to save the model outputs generated by the `R` scripts. 
+
+* **`Plots`:** a folder to save the figures generated by the `R` scripts.
+
+
+**Project**
+
+* **`COVID19_care_home_NPIs.Rproj`:** An `RStudio` project file, to avoid having to set your working directory to the  folder on your computer. 
 
 
 --------------------------------------------------------------------------------

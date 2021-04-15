@@ -5,6 +5,8 @@
 
 # R script to define baseline parameters
 
+
+
 ## number of simulations
 n.sim<-1500
 
@@ -128,4 +130,3 @@ if(scenario_staff_imp=="N"){
   changed_R0_community_mean<-0
   #p_LTCF2 outbreak is zero
   changed_p_LTCF2_outbreak_mean<-0}
-

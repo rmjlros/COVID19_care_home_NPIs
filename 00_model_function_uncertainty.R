@@ -3,7 +3,7 @@
 # Alicia Rosello (2021)
 # https://github.com/rmjlros/COVID19_care_home_NPIs
 
-# R script that defines percentiles_model function, which runs model and gives p(outbreak at 30 days), p(large outbreak at 90 days) for each parameter set. The number of  parameter sets are defined by N_parameter_set argument, and the number  of simulations to run per parameter set are defined by N_sims_per_param_set argument.
+# R script that defines percentiles_model function, which runs model and gives p(outbreak at 30 days), and p(large outbreak at 90 days) for each parameter set. The number of  parameter sets are defined by N_parameter_set argument, and the number of simulations to run per parameter set are defined by N_sims_per_param_set argument.
 
 
 percentiles_model<-function(N_param_set, N_sims_per_param_set){

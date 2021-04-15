@@ -3,9 +3,9 @@
 # Alicia Rosello (2021)
 # https://github.com/rmjlros/COVID19_care_home_NPIs
 
-# R script to define parameter means
+# R script to define parameter means and fixed parameter values
 
-### PARAMETERS  
+
 
 ## PARAMETER MEANS
 
@@ -147,11 +147,8 @@ p_EIpcIa_s2_mean=staff_inf_t1[staff_inf_t1$variable=="E","median_sum_p"][[1]]+
 
 
 
-
-
-
-## PARAMETER FIXED
-
+## FIXED PARAMETERS 
+ 
 # reporting, not used if not fitting
 rho=0.5
 
@@ -287,7 +284,7 @@ switch_all_COVID_returns=if(scenario_COVID_returns=="all_R"){2}else if(scenario_
 
 
 
-## How many residents to put into each compartment
+## N RESIDENTS IN EACH COMPARTMENT AT SIIMULATION START
 # scenario of nursing vs residential
 if(scenario_LTCF=="nh" & scenario_LTCF_size=="baseline"){
   N_residents<-median(CQC_care_homes_older_people_only_nh$`Care homes beds`)
@@ -321,7 +318,7 @@ if(scenario_exp=="1"){
 }
 
 
-## How many staff to put into each compartment
+## N STAFF IN EACH COMPARTMENT AT SIIMULATION START
 # N nursing vs residential staff
 if(scenario_LTCF=="nh"){
   N_staff<-N_residents*2
@@ -350,6 +347,7 @@ if(N_Ss+N_Rs!=N_staff){
     N_Rs<-N_Rs+(N_staff-N_Ss-N_Rs)
   }
 }
+
 
 
 ## FIXED PARAMETERS SENSITIVITY ANALYSIS 
@@ -415,10 +413,3 @@ N_E_ul=NA
 N_R_ul=NA
 N_Ss_ul=NA
 N_Rs_ul=NA
-
-
-
-
-
-
-

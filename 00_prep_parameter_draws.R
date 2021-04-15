@@ -3,9 +3,11 @@
 # Alicia Rosello (2021)
 # https://github.com/rmjlros/COVID19_care_home_NPIs
 
-# R script to draw parameters from distributions
+# R script to draw parameters from distributions, define extreme parameter values for sensitivity analysis, and aggregate parameters into matrix.
 
 
+
+### PARAMETER DRAWS
 
 # death rate in the LTCF non-clinical residents pppd
 delta  <- rgamma(n=n.sim,shape=12, scale=(delta_mean/12))
@@ -139,7 +141,6 @@ p_EIpcIa_s2 <- rbeta(n.sim,(((1 - p_EIpcIa_s2_mean) / 0.001^2 - 1 / p_EIpcIa_s2_
 
 
 
-
 ###  EXTREME PARAMETER VALUES 
 
 ## LL
@@ -192,7 +193,6 @@ p_R_s2_ll <- rep(quantile(p_R_s2,0.05)[[1]], n.sim)
 p_EIpcIa_s2_ll <- rep(quantile(p_EIpcIa_s2,0.05)[[1]], n.sim)
 
 
-
 ## UL
 
 delta_ul <- rep(quantile(delta,0.95)[[1]], n.sim)
@@ -241,7 +241,6 @@ p_EIpcIa_hosp_ul <- rep(quantile(p_EIpcIa_hosp,0.95)[[1]], n.sim)
 p_shedding_after_H_ul <- rep(quantile(p_shedding_after_H,0.95)[[1]], n.sim)
 p_R_s2_ul <- rep(quantile(p_R_s2,0.95)[[1]], n.sim)
 p_EIpcIa_s2_ul <- rep(quantile(p_EIpcIa_s2,0.95)[[1]], n.sim)
-
 
 
 
@@ -297,11 +296,6 @@ if (fix_param_scenario=="Y")
   p_EIpcIa_s2 <- rep(quantile(p_EIpcIa_s2,0.5)[[1]], n.sim)
   
 }
-
-
-
-
-
 
 
 
@@ -381,7 +375,6 @@ theta_matrix_fixed<-rbind(rho=rep(rho,n.sim),
                           N_Ss=rep(N_Ss,n.sim),
                           N_Rs=rep(N_Rs,n.sim)
 )
-
 
 theta_matrix_rates_ll<-rbind(delta_ll, 
                              kappa_ll, 
@@ -531,11 +524,8 @@ theta_matrix_fixed_ul<-rbind(rho_ul=rep(rho_ul,n.sim),
                              N_Ss_ul=rep(N_Ss_ul,n.sim),
                              N_Rs_ul=rep(N_Rs_ul,n.sim))
 
-
 # aggregate matrices
 theta_matrix_1<-rbind(theta_matrix_rates, theta_matrix_other, theta_matrix_fixed)  
 theta_matrix_1_ll<-rbind(theta_matrix_rates_ll, theta_matrix_other_ll, theta_matrix_fixed_ll)   
 theta_matrix_1_ul<-rbind(theta_matrix_rates_ul, theta_matrix_other_ul, theta_matrix_fixed_ul)  
-theta_matrix_1_ll_ul<-rbind(theta_matrix_1_ll,theta_matrix_1_ul)  
-
-
+theta_matrix_1_ll_ul<-rbind(theta_matrix_1_ll,theta_matrix_1_ul)

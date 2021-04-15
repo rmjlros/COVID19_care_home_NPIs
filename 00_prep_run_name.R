@@ -5,11 +5,14 @@
 
 # R script to name run
 
-## Run name
+
+### Define run name
 
 # name scenario
+
 if(fix_param_scenario=="Y"){name_fix_param_scenario<-"p_fixed"}
 if(fix_param_scenario=="N"){name_fix_param_scenario<-"p_drawn"}
+
 if(hosp_scenario=="setpIpcIaE"){name_hosp_scenario<-pIpcIaE}
 if(hosp_scenario=="steph"){name_hosp_scenario<-hosp_scenario}
 
@@ -90,7 +93,7 @@ if(scenario_staff_imp=="N"){
   name_scenario_staff_imp<-"SimpN"}
 
 
-## Compose name
+### Compose name
 run_name<-paste0(scenario_LTCF,
                  "_", "himp", name_hosp_scenario,
                  "_vis", scenario_v,
@@ -117,5 +120,3 @@ run_name<-paste0(scenario_LTCF,
                  "_",name_fix_param_scenario,
                  "_", name_scenario_staff_imp,
                  "_himp", scenario_h_inf_imp, "_",n.sim, "_sim")
-
-

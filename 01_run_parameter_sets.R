@@ -6,6 +6,15 @@
 # R script to run parameter sets and output these to Outputs/Params
 
 
+#### clear environment
+rm(list = ls(all = TRUE))	
+
+
+#### load packages
+require(readxl)
+require(dplyr)
+library(reshape2)
+
 
 #### paths
 Output_params<-"Outputs/Params/"
@@ -15,7 +24,6 @@ params<-"00_prep_parameter_means.R"
 param_draws<-"00_prep_parameter_draws.R"
 param_combo<-"00_prep_parameter_combo.R"
 run_name_generator<-"00_prep_run_name.R"
-
 
 
 #### 1a. run baseline parameters nursing care homes 

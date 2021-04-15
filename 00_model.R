@@ -104,13 +104,16 @@ double switch_isolation_gamma_a_s;
 
 
 // DECLARE STORAGE OBJECTS
+
 double rate[105];
 double dN[105];
 
 double resN = S + E + Ipcpi + Ipc + Ia + Iapi + Ipci + Iai + Ichpi1 + Ichpi2 + Ichpi3 + Ichpi4 + Ichi1 + Ichi2  + Ichi3 + Ich + Iclpi1 + Iclpi2 + Icli1 + Icli2 + Icli3 + Icl + R;
 double staffN = Ss + Es + Ipcpis + Ipcs + Ias + Iapis + Ichpi1s + Ichpi2s + Rs + Ss2 + Es2 + Ipcpis2 + Ipcs2 + Ias2 + Iapis2 + Ichpi1s2 + Ichpi2s2 + Rs2;
 
+
 // DECLARE OBJECS FOR ENTRIES AND EXITS
+
 double exits;
 double exits_h;
 double exits_hc;
@@ -139,30 +142,6 @@ double bIcli2;
 double bIcli3;
 double bIcl;
 double bR;
-
-//double CS;
-//double CE;
-//double CIpcpi;
-//double CIpc;
-//double CIa;
-//double CIapi;
-//double CIpci;
-//double CIai;
-//double CIchpi1;
-//double CIchpi2;
-//double CIchpi3;
-//double CIchpi4;
-//double CIch;
-//double CIchi1;
-//double CIchi2;
-//double CIchi3;
-//double CIclpi1;
-//double CIclpi2;
-//double CIcli1;
-//double CIcli2;
-//double CIcli3;
-//double CIcl;
-//double CR;
 
 double HS;
 double HE;
@@ -261,6 +240,7 @@ double exitRs2;
 double absent_staff;
 double returning_staff;
 
+
 // DECLARE OBJECS FOI
 
 double lambda_r2r;
@@ -277,13 +257,13 @@ double beta2_h;
 double beta2_l;
 double beta2_a;
 
+
 //  DECLARE OBJECTS TESTING
 
 int m_tnc_period;
 int m_tc_period;
 int m_tncs_period;
 
-//--Auxiliary variables, to be used below
 
 // CALCULATING RATES 
 
@@ -694,7 +674,9 @@ beta2_l = beta_l;
 beta2_a = beta_a;
 }
 
+
 // FOI
+
 lambda_r2r = (beta2_pc * ((Ipc+Ipcpi + (Ipci * m_i))/resN)) + (beta2_h * ((Ich+Ichpi1+Ichpi2+Ichpi3+Ichpi4 + ((Ichi1+Ichi2+Ichi3) * m_i))/resN)) + (beta2_l * ((Icl+Iclpi1+Iclpi2+ ((Icli1+Icli2+Icli3) * m_i))/resN)) + (beta2_a * ((Ia+Iapi+ (Iai* m_i))/resN)); //FoI from resident to resident
 
 lambda_v2r = beta2_a * (n_V * resN * p_v_infectious * m_v)/resN; //FoI from visitor to resident
@@ -736,7 +718,7 @@ m_tncs_period= (((int)t) % ((int)tncs_period)) == 0 ? 1 : 0; // if t is in seq(0
 }
 
 
-// RESIDENTS
+// EXITS FROM RESIDENT COMPARTMENTS
 
 //exits S compartment
 rate[0] = delta; // normal death rate
@@ -870,7 +852,7 @@ rate[73] = delta; // normal death rate
 rate[74] = kappa; // hospitalisation rate
 
 
-//STAFF
+// EXITS FROM STAFF COMPARTMENTS
 
 //exits Ss compartment
 rate[75] = lambda_r2s + lambda_s2s + lambda_c2s + lambda_o2s; // infection, rate at which Ss become Es
@@ -904,7 +886,7 @@ rate[86] = gamma_pc_l1_s; // rate of isolation, rate at which Ichpi2s become As
 rate[87] = nu; // rate of removal (recovery) in isolation, rate at which As become Rs
 
 
-//REPLACEMENT STAFF
+// EXITS FROM REPLACEMENT STAFF COMPARTMENTS
 
 //exits Ss2 compartment
 rate[88] = lambda_r2s + lambda_s2s + lambda_c2s + lambda_o2s2; // infection, rate at which Ss2 become Es2
@@ -935,7 +917,7 @@ rate[98] = gamma_c_s; // rate of isolation, rate at which Ichpi1s2 become As2
 rate[99] = gamma_pc_l1_s; // rate of isolation, rate at which Ichpi2s2 become As2
 
 
-//--Stochastic draw of individuals for each transition
+//STOCHASTIC DRAW OF INDIVIDUALS FOR EACH TRANSITION
 
 reulermultinom(3, S, &rate[0], dt, &dN[0]); 
 reulermultinom(6, E, &rate[3], dt, &dN[3]);
@@ -980,10 +962,8 @@ reulermultinom(1, Iapis2, &rate[97], dt, &dN[97]);
 reulermultinom(1, Ichpi1s2, &rate[98], dt, &dN[98]);
 reulermultinom(1, Ichpi2s2, &rate[99], dt, &dN[99]);
 
-//Rprintf(\"%f is time of reulermultinom draw\\n",t);
 
-
-//--Total number of exits from the LTCF from residents
+//TOTAL NUMBER OF EXITS FROM THE LTCF FROM RESIDENTS
 
 exits = dN[0]+dN[1]+dN[3]+dN[4]+dN[9]+dN[10]+dN[14]+dN[15]+dN[19]+dN[20]+dN[22]+dN[23]+dN[25]+dN[26]+dN[28]+dN[29]+dN[31]+dN[32]+dN[34]+dN[35]+dN[37]+dN[38]+dN[40]+dN[41]+dN[43]+dN[44]+dN[46]+dN[47]+dN[49]+dN[50]+dN[52]+dN[53]+dN[55]+dN[56]+dN[58]+dN[59]+dN[61]+dN[62]+dN[64]+dN[65]+dN[67]+dN[68]+dN[70]+dN[71]+dN[73]+dN[74]; 
 
@@ -994,37 +974,7 @@ exits_hc = dN[32]+dN[35]+dN[38]+dN[41]+dN[44]+dN[47]+dN[50]+dN[53]+dN[56]+dN[59]
 exits_non_hc = dN[0]+dN[1]+dN[3]+dN[4]+dN[9]+dN[10]+dN[14]+dN[15]+dN[19]+dN[20]+dN[22]+dN[23]+dN[25]+dN[26]+dN[28]+dN[29]+dN[73]+dN[74]; //exits to hospital general (non-COVID) or dying general (non-COVID)
 
 
-//--Entries from community and hospital
-
-//only if entries include those from the community
-//CS=rpois(exits*y1*(1-hl)); //entries from the community into S
-//CE=rpois(exits*y2*(1-hl)); //entries from the community into E
-//CIpc=rpois(exits*y5*(1-hl)); //entries from the community into Ipc
-//CIa=rpois(exits*y6*(1-hl)); //entries from the community into Ia
-//CIc=rpois(exits*y7*(1-hl)); //entries from the community into Ic
-//CIcpi=rpois(exits*y8*(1-hl)); //entries from the community into Icpi
-//CR=rpois(exits*y9*(1-hl)); //entries from the community into R
-//CIci=rpois(exits*y10*(1-hl)); //entries from the community into Ici
-
-//only if entries include those from the community
-//HS=rpois(exits*xS*hl); //entries from the hospital into S
-//HE=rpois(exits*xE*hl); //entries from the hospital into E
-//HIpc=rpois(exits*xIpc*hl); //entries from the hospital into Ipc
-//HIa=rpois(exits*xIa*hl); //entries from the hospital into Ia
-//HIc=rpois(exits*xIapi*hl); //entries from the hospital into Ic
-//HIcpi=rpois(exits*xIpci*hl); //entries from the hospital into Icpi
-//HR=rpois(exits*xIai*hl); //entries from the hospital into R
-//HIci=rpois(exits*xIchi2*(1-hl)); //entries from the hospital into Ici
-
-//only if entries include those from the community
-//bS=(HS+CS); //all entries into S
-//bE=(HE+CE); //all entries into E
-//bIpc=(HIpc+CIpc); //all entries into Ipc
-//bIa=(HIa+CIa); //all entries into Ia
-//bIc=(HIc+CIc); //all entries into Ic
-//bIcpi=(HIcpi+CIcpi); //all entries into Icpi
-//bR=(HR+CR); //all entries into R
-//bIci=(HIci+CIci); //all entries into Ici
+//ENTRIES FROM HOSPITAL
 
 //if entries only from hospital. These entries are from clinical residents that left and did not die + other admissions to the care home from hospital
 HS_non_hc=rpois(exits_non_hc*xS); //entries from the hospital into S general admissions to the care home from hospital
@@ -1173,11 +1123,11 @@ while ((HS+HE+HIpcpi+HIpc+HIa+HIapi+HIpci+HIai+HIchpi1+HIchpi2+HIchpi3+HIchpi4+H
   HIcl=HIcl_non_hc+HIcl_hc;
   HR=HR_non_hc+HR_hc;
   
-  //Rprintf(\"%f is time of searching match entry exits\\n",t);
-
 }
 
-//entries to the LTCF from hospital (switch turns this on or off)
+
+// SWITCH ENTRIES TO THE LTCF FROM HOSPITAL (switch turns this on or off)
+
 bS=HS*switch_h_imp; //all entries into S
 bE=HE*switch_h_imp;
 bIpcpi=HIpcpi*switch_h_imp;
@@ -1203,7 +1153,7 @@ bIcl=HIcl*switch_h_imp;
 bR=HR*switch_h_imp;
 
 
-//--Absent staff
+// ABSENT STAFF
 
 //total new absent (from pool 1) and newly returning staff
 absent_staff = dN[80] + dN[84] + dN[85] + dN[86];
@@ -1234,8 +1184,6 @@ while ((bSs2+bEs2+bIpcpis2+bIpcs2+bIas2+bIapis2+bIchpi1s2+bIchpi2s2+bAs2+bRs2)>a
   bAs2 = rpois(absent_staff*p_replaced*aAs2)*switch_new_staff;
   bRs2 = rpois(absent_staff*p_replaced*aRs2)*switch_new_staff;
   
-  //Rprintf(\"%f is time of searching match absent staff\\n",t);
-
 }
 
 //remove replacement staff at the same rate as staff become recovered, randomly from each comparment. Cap so that number of replacement staff exiting is the same as number of original staff returning, and cant be higher that what is in compartment
@@ -1293,13 +1241,10 @@ if(round(returning_staff*p_replaced)==0){
   }
 }
 
-
 while ((exitSs2+exitEs2+exitIpcpis2+exitIpcs2+exitIas2+exitIapis2+exitIchpi1s2+exitIchpi2s2+exitAs2+exitRs2)>round(returning_staff*p_replaced)){
 
   int exits_to_remove;
   exits_to_remove = (exitSs2+exitEs2+exitIpcpis2+exitIpcs2+exitIas2+exitIapis2+exitIchpi1s2+exitIchpi2s2+exitAs2+exitRs2)-round(returning_staff*p_replaced);
-  
-  //Rprintf(\"%d exits to remove\\n", exits_to_remove);
   
   for (int i = 1; i < (exits_to_remove+1); i++){
   
@@ -1312,61 +1257,51 @@ while ((exitSs2+exitEs2+exitIpcpis2+exitIpcs2+exitIas2+exitIapis2+exitIchpi1s2+e
   
   if(exitSs2 != 0){
   vect[idx_ctr] = 1;
-  //Rprintf(\"print the element of vector corresponding to exitSs2 %f\\n", vect[idx_ctr]);
   idx_ctr += 1;
   counter += 1;
   }
   if(exitEs2 != 0){
   vect[idx_ctr] = 2;
-  //Rprintf(\"print the element of vector corresponding to exitEs2 %f\\n", vect[idx_ctr]);
   idx_ctr += 1;
   counter += 1;
   }
   if(exitIpcpis2 != 0){
   vect[idx_ctr] = 3;
-  //Rprintf(\"print the element of vector corresponding to exitIpcpis2 %f\\n", vect[idx_ctr]);
   idx_ctr += 1;
   counter += 1;
   }
   if(exitIpcs2 != 0){
   vect[idx_ctr] = 4;
-  //Rprintf(\"print the element of vector corresponding to exitIpcs2 %f\\n", vect[idx_ctr]);
   idx_ctr += 1;
   counter += 1;
   }
   if(exitIas2 != 0){
   vect[idx_ctr] = 5;
-  //Rprintf(\"print the element of vector corresponding to exitIas2 %f\\n", vect[idx_ctr]);
   idx_ctr += 1;
   counter += 1;
   }
   if(exitIapis2 != 0){
   vect[idx_ctr] = 6;
-  //Rprintf(\"print the element of vector corresponding to exitIapis2 %f\\n", vect[idx_ctr]);
   idx_ctr += 1;
   counter += 1;
   }
   if(exitIchpi1s2 != 0){
   vect[idx_ctr] = 7;
-  //Rprintf(\"print the element of vector corresponding to exitIchpi1s2 %f\\n", vect[idx_ctr]);
   idx_ctr += 1;
   counter += 1;
   }
   if(exitIchpi2s2 != 0){
   vect[idx_ctr] = 8;
-  //Rprintf(\"print the element of vector corresponding to exitIchpi2s2 %f\\n", vect[idx_ctr]);
   idx_ctr += 1;
   counter += 1;
   }
   if(exitAs2 != 0){
   vect[idx_ctr] = 9;
-  //Rprintf(\"print the element of vector corresponding to exitAs2 %f\\n", vect[idx_ctr]);
   idx_ctr += 1;
   counter += 1;
   }
   if(exitRs2 != 0){
   vect[idx_ctr] = 10;
-  //Rprintf(\"print the element of vector corresponding to exitRs2 %f\\n", vect[idx_ctr]);
   idx_ctr += 1;
   counter += 1;
   }
@@ -1379,8 +1314,6 @@ while ((exitSs2+exitEs2+exitIpcpis2+exitIpcs2+exitIas2+exitIapis2+exitIchpi1s2+e
   where_to_put_int = (int)where_to_put;
   indx_to_put = vect[where_to_put_int-1]; // check this, c++ indexing starts at zero (not sure if this is full on c++?!) so may need to be vect[where_to_put] instead
   
-  //Rprintf(\"removing from category %d\\n", indx_to_put);
-  
   vect[0] = 0;
   vect[1] = 0;
   vect[2] = 0;
@@ -1392,11 +1325,8 @@ while ((exitSs2+exitEs2+exitIpcpis2+exitIpcs2+exitIas2+exitIapis2+exitIchpi1s2+e
   vect[8] = 0;
   vect[9] = 0;
   
-  //Rprintf(\"exitSs2 pre removal %f\\n", exitSs2);
-  
   if (indx_to_put == 1){
     exitSs2 -= 1;
-    //Rprintf(\"exitSs2 post removal %f\\n", exitSs2);
   }
   if (indx_to_put == 2){
     exitEs2 -= 1;
@@ -1427,15 +1357,14 @@ while ((exitSs2+exitEs2+exitIpcpis2+exitIpcs2+exitIas2+exitIapis2+exitIchpi1s2+e
   }
   
   exits_to_remove -=1;
-  //Rprintf(\"%d exits to remove\\n", exits_to_remove);
-  
+
   }
 
 }
 
 
-//--Numbers in each compartment adjusted
-// RESIDENTS
+// ADJUST NUMBERS OF RESIDENTS IN EACH COMPARTMENT
+
 S += bS - dN[0] - dN[1] - dN[2];
 E += bE - dN[3] - dN[4] - dN[5] - dN[6] - dN[7] - dN[8] + dN[2];
 Ipcpi += bIpcpi - dN[9] - dN[10] - dN[11] - dN[12] - dN[13] + dN[5];
@@ -1460,7 +1389,9 @@ Icli3 += bIcli3 - dN[67] - dN[68] - dN[69] + dN[60] ;
 Icl += bIcl - dN[70] - dN[71] - dN[72] + dN[45];
 R += bR - dN[73] - dN[74] + dN[21] + dN[30] + dN[63] + dN[66] + dN[69] + dN[72];
 
-//STAFF
+
+// ADJUST NUMBERS OF STAFF IN EACH COMPARTMENT
+
 Ss += - dN[75];
 Es += dN[75] - dN[76] - dN[77] - dN[78] - dN[79];
 Ipcpis += dN[76] - dN[80] - dN[81];
@@ -1472,7 +1403,9 @@ Ichpi2s += dN[81] - dN[86];
 As += dN[80] + dN[84] + dN[85] + dN[86] - dN[87];
 Rs += dN[83] + dN[87];
 
-//REPLACEMENT STAFF
+
+// ADJUST NUMBERS OF REPLACEMENT STAFF IN EACH COMPARTMENT
+
 Ss2 += bSs2 - dN[88] - exitSs2;
 Es2 += bEs2 + dN[88] - dN[89] - dN[90]  - dN[91] - dN[92] - exitEs2;
 Ipcpis2 += bIpcpis2 + dN[89] - dN[93] - dN[94] - exitIpcpis2;
@@ -1484,10 +1417,13 @@ Ichpi2s2 += bIchpi2s2 + dN[94] - dN[99] - exitIchpi2s2;
 As2 += bAs2 + dN[93] + dN[97] + dN[98] + dN[99] - exitAs2;
 Rs2 += bRs2 + dN[96] - exitRs2;
 
+
+// COUNTING
+
 //number of residents isolated/staff absent
 Isolated += bIpci + dN[11] + bIai + dN[24] + bIchi1 +  dN[33] + bIchi2 + dN[27] + bIchi3 + dN[39] + bIcli1 + dN[48] + dN[51] + dN[54] + bIcli2 + dN[57] + bIcli3 + dN[60] + dN[80] + dN[84] + dN[85] + dN[86] + bAs2 + dN[93] + dN[97] + dN[98] + dN[99] ;
 
-//--Counting
+//tests
 TestRes += (S * p_tnc * m_tnc_period)+
 (E * p_tnc * m_tnc_period)+(Ipcpi * p_tnc * m_tnc_period)+
 (Ipc * p_tnc * m_tnc_period)+
@@ -1519,6 +1455,7 @@ TestStaff2 += (Ss2 * p_tncs * m_tncs_period)+
 (Iapis2 * p_tncs * m_tncs_period)+
 (Rs2 * p_tncs * m_tncs_period); //assuming nobody isolated is tested, those with clinical not tested
 
+// incidence
 NewIc += bIchpi1  + dN[17] + bIchpi2  + dN[18] +bIchpi3  + dN[12] + bIchpi4 + dN[13] + bIch + dN[16] + bIchi2 + dN[27]; //Counting new cases infectious (symptomatic) in residents, does not include Ichi1, Icli1, Icl
 
 NewIpcIa += bIpcpi + dN[5] + bIpc + dN[6] + bIa + dN[7] + bIapi + dN[8]; //Counting new cases infectious (not symptomatic) in residents, does not include stages Ipci, Iai
@@ -1536,6 +1473,7 @@ NewIpcsIas2 += dN[89] + dN[90] + dN[91] + dN[92]; //Counting new Ipc and Ia in r
 NewEs2 += dN[88]; //Counting newly exposed  replacement staff
 NewRs2 += dN[96]; //Counting newly recovered replacement staff
 
+//entries and exits
 totalExits += exits; //conting total exits (deaths and hospitalisations)
 
 totalDeaths += dN[0]+dN[3]+dN[9]+dN[14]+dN[19]+dN[22]+dN[25]+dN[28]+dN[31]+dN[34]+dN[37]+dN[40]+dN[43]+dN[46]+dN[49]+dN[52]+dN[55]+dN[58]+dN[61]+dN[64]+dN[67]+dN[70]+dN[73]; //counting total exits for death (residents)
@@ -1627,96 +1565,10 @@ Icli3Entries += bIcli3;
 IclEntries += bIcl;
 REntries += bR;
 
-//entries and exits staff
-//Ss2Entries += bSs2; 
-//Es2Entries += bEs2;
-//Ipcpis2Entries += bIpcpis2;
-//Ipcs2Entries += bIpcs2;
-//Ias2Entries += bIas2;
-//Iapis2Entries += bIapis2;
-//Ichpi1s2Entries += bIchpi1s2;
-//As2Entries += bAs2;
-//Rs2Entries += bRs2;
-
 S2Entries += bSs2+bEs2+bIpcpis2+bIpcs2+bIas2+bIapis2+bIchpi1s2+bIchpi2s2+bAs2+bRs2;
 S1Exits += NewAs;
 S1Entries += NewRs;
 S2Exits += exitSs2+exitEs2+exitIpcpis2+exitIpcs2+exitIas2+exitIapis2+exitIchpi1s2+exitIchpi2s2+exitAs2+exitRs2;
 
-//Rprintf(\"%f is time of calculations for each compartment\\n",t);
-
-//Spell it out
-
-//if (t==7){
-//Rprintf(\"%d is the value of m_tncs_period\\n",m_tncs_period);
-//Rprintf(\"%f is the value of rate 8\\n",rate[8]);
-//Rprintf(\"%f is the value of t\\n",t);
-//}
-//if (t==10){
-//Rprintf(\"%d is the value of m_tncs_period\\n",m_tncs_period);
-//Rprintf(\"%f is the value of rate 8\\n",rate[8]);
-//Rprintf(\"%f is the value of t\\n",t);
-//}
-//if (t==14){
-//Rprintf(\"%d is the value of m_tncs_period\\n",m_tncs_period);
-//Rprintf(\"%f is the value of rate 8\\n",rate[8]);
-//Rprintf(\"%f is the value of t\\n",t);
-//}
-
-//if (t==7){
-//Rprintf(\"%f is the value of lambda_s2s\\n",lambda_s2s);
-//Rprintf(\"%f is the value of t\\n",t);
-//}
-//if (t==100){
-//Rprintf(\"%f is the value of lambda_s2s\\n",lambda_s2s);
-//Rprintf(\"%f is the value of t\\n",t);
-//Rprintf(\"%f is the value of zIcl\\n",zIcl);
-//}
-//if (t==300){
-//Rprintf(\"%f is the value of lambda_s2s\\n",lambda_s2s);
-//Rprintf(\"%f is the value of t\\n",t);
-//}
-
-//if(Ipci+Iai+Ichi2+Ichi1+Icli1+As+As2>=1){
-//Rprintf(\"%f is the value of t\\n",t);
-//}
-
-if(t==1){
-//Rprintf(\"%f is the value of lambda_r2r at t1\\n",lambda_r2r);
-//Rprintf(\"%f is the value of gamma_pc at t1\\n",gamma_pc);
-//Rprintf(\"%f is the value of tau_i at t1\\n",tau_i);
-//Rprintf(\"%f is the value of phi_i_l2 at t1\\n",phi_i_l2);
-}
-if(t==2){
-//Rprintf(\"%f is the value of lambda_r2r at t2\\n",lambda_r2r);
-//Rprintf(\"%f is the value of rate[98] at t2\\n",rate[98]);
-//Rprintf(\"%f is the value of rate[99] at t2\\n",rate[99]);
-//Rprintf(\"%f is the value of rate[100]  at t2\\n",rate[100]);
-//Rprintf(\"%f is the value of bSs2  at t2\\n",bSs2);
-//Rprintf(\"%f is the value of bIchpi2s2  at t2\\n",bSs2);
-//Rprintf(\"%f is the value of bAs2  at t2\\n",bAs2);
-//Rprintf(\"%f is the value of gamma_pc at t2\\n",gamma_pc);
-//Rprintf(\"%f is the value of tau_i at t2\\n",tau_i);
-//Rprintf(\"%f is the value of phi_i_l2 at t2\\n",phi_i_l2);
-}
-if(t==7){
-//Rprintf(\"%f is the value of rate[0] at t7\\n",rate[0]);
-//Rprintf(\"%f is the value of rate[1] at t7\\n",rate[1]);
-//Rprintf(\"%f is the value of rate[2] at t7\\n",rate[2]);
-//Rprintf(\"%f is the value of rate[3]  at t7\\n",rate[3]);
-//Rprintf(\"%f is the value of gamma_pc at t7\\n",gamma_pc);
-//Rprintf(\"%f is the value of tau_i at t7\\n",tau_i);
-//Rprintf(\"%f is the value of phi_i_l2 at t7\\n",phi_i_l2);
-//Rprintf(\"%f is the value of l1 at t7\\n",l1);
-//Rprintf(\"%f is the value of l2 at t7\\n",l2);
-//Rprintf(\"%f is the value of l3 at t7\\n",l3);
-//Rprintf(\"%f is the value of l4 at t7\\n",l4);
-//Rprintf(\"%f is the value of l5 at t7\\n",l5);
-//Rprintf(\"%f is the value of delta at t7\\n",delta);
-}
-//Rprintf(\"%f is the value of t \\n",t);
-
 
 '
-
-# The pomp function euler.sim uses the Euler-Maruyama approximation to the full stochastic system. This calculates the number of events happening in a given fixed time step by sampling from a multinomial distribution with the probabilities of each event given by the product of its rate and the time step. Instead of calculating the rates of transition as in the deterministic skeleton, reulermultinom draws random numbers from the compartment specified in the second argument to get the number of individuals who transition from that compartment to another one. These numbers are stored in the array N.

@@ -1,11 +1,7 @@
 ### INITIALISER
-# number of residents taken from mean number of residents THF report for nursing LTCFs and residental LTCFs
-# number of staff per resident taken from Easter 6: between 1.2-2.4, not obvious difference by nursing vs residential but none were purely residential, so assuming 2 per resident in NH and 1 per resident in RES.
-
-
 
 rinit <- "
-S = N_S; //how many people to put in this model?
+S = N_S; 
 E = N_E;
 Ipcpi = 0; 
 Ipc = 0; 
