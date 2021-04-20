@@ -26,6 +26,201 @@ source(model_function_uncertainty)
 
 
 
+######### Baseline ######### 
+
+#### 1a. baseline parameters, nursing care homes
+
+# remove everything except these objects from environment
+rm(list=setdiff(ls(), c("percentiles_model","Output_params","Output_model_IPC_other", "transmission_model", "initialiser","param_combo", "model_function_uncertainty")))
+
+# define LTCF_type
+LTCF_type<-"nh"
+
+# read in parameter set
+run_name<-"_himpsteph_visprep_pRinitb_sizeb_R0base_b2base_b3base_pibase_mibase_dibase_ptncbase_ptcbase_ptncsbase_ftncbase_ftcbase_ftncsbase_taH_pfnbase_s2_p2LTCFb_IcHallI_prevm_p_drawn_SimpY_himpY_1500_sim"
+theta_matrix_1<-read.csv(file = paste0(Output_params,LTCF_type,run_name,"_params_before_combo.csv",sep=""),row.names = 1)
+theta_matrix_2<-read.csv(file = paste0(Output_params,LTCF_type,run_name,"_params.csv",sep=""),row.names = 1)
+
+# update parameter matrix
+n.sim<-1500
+source(param_combo) # generate combination parameters
+theta_matrix_combo<-data.frame(theta_matrix_combo)
+theta_matrix_2<-rbind(theta_matrix_1,theta_matrix_combo) # aggregate theta matrix
+
+# define number of parameter sets and simulations to run
+if(LTCF_type=="nh"){n.sim<-700}else if(LTCF_type=="res"){n.sim<-800}else{print("error")}
+
+# run model
+l_p_InfC_r<-lapply(1:n.sim,FUN=percentiles_model,N_sims_per_param_set = 600)
+
+# save outputs
+df_p_InfC_r<-rbindlist(l_p_InfC_r)
+file_save<-paste0(Output_model_IPC_other,LTCF_type,run_name,".csv",sep="")
+write.csv(df_p_InfC_r, file_save, row.names=FALSE)
+
+
+
+#### 1b. baseline parameters, residential care homes
+
+# remove everything except these objects from environment
+rm(list=setdiff(ls(), c("percentiles_model","Output_params","Output_model_IPC_other", "transmission_model", "initialiser","param_combo", "model_function_uncertainty")))
+
+# define LTCF_type
+LTCF_type<-"res"
+
+# read in parameter set
+run_name<-"_himpsteph_visprep_pRinitb_sizeb_R0base_b2base_b3base_pibase_mibase_dibase_ptncbase_ptcbase_ptncsbase_ftncbase_ftcbase_ftncsbase_taH_pfnbase_s2_p2LTCFb_IcHallI_prevm_p_drawn_SimpY_himpY_1500_sim"
+theta_matrix_1<-read.csv(file = paste0(Output_params,LTCF_type,run_name,"_params_before_combo.csv",sep=""),row.names = 1)
+theta_matrix_2<-read.csv(file = paste0(Output_params,LTCF_type,run_name,"_params.csv",sep=""),row.names = 1)
+
+# update parameter matrix
+n.sim<-1500
+source(param_combo) # generate combination parameters
+theta_matrix_combo<-data.frame(theta_matrix_combo)
+theta_matrix_2<-rbind(theta_matrix_1,theta_matrix_combo) # aggregate theta matrix
+
+# define number of parameter sets and simulations to run
+if(LTCF_type=="nh"){n.sim<-700}else if(LTCF_type=="res"){n.sim<-800}else{print("error")}
+
+# run model
+l_p_InfC_r<-lapply(1:n.sim,FUN=percentiles_model,N_sims_per_param_set = 600)
+
+# save outputs
+df_p_InfC_r<-rbindlist(l_p_InfC_r)
+file_save<-paste0(Output_model_IPC_other,LTCF_type,run_name,".csv",sep="")
+write.csv(df_p_InfC_r, file_save, row.names=FALSE)
+
+
+
+#### 2a. low community prev, nursing care homes
+
+# remove everything except these objects from environment
+rm(list=setdiff(ls(), c("percentiles_model","Output_params","Output_model_IPC_other", "transmission_model", "initialiser","param_combo", "model_function_uncertainty")))
+
+# define LTCF_type
+LTCF_type<-"nh"
+
+# read in parameter set
+run_name<-"_himpsteph_visprep_pRinitb_sizeb_R0base_b2base_b3base_pibase_mibase_dibase_ptncbase_ptcbase_ptncsbase_ftncbase_ftcbase_ftncsbase_taH_pfnbase_s2_p2LTCFb_IcHallI_prevl_p_drawn_SimpY_himpY_1500_sim"
+theta_matrix_1<-read.csv(file = paste0(Output_params,LTCF_type,run_name,"_params_before_combo.csv",sep=""),row.names = 1)
+theta_matrix_2<-read.csv(file = paste0(Output_params,LTCF_type,run_name,"_params.csv",sep=""),row.names = 1)
+
+# update parameter matrix
+n.sim<-1500
+source(param_combo) # generate combination parameters
+theta_matrix_combo<-data.frame(theta_matrix_combo)
+theta_matrix_2<-rbind(theta_matrix_1,theta_matrix_combo) # aggregate theta matrix
+
+# define number of parameter sets and simulations to run
+if(LTCF_type=="nh"){n.sim<-700}else if(LTCF_type=="res"){n.sim<-800}else{print("error")}
+
+# run model
+l_p_InfC_r<-lapply(1:n.sim,FUN=percentiles_model,N_sims_per_param_set = 600)
+
+# save outputs
+df_p_InfC_r<-rbindlist(l_p_InfC_r)
+file_save<-paste0(Output_model_IPC_other,LTCF_type,run_name,".csv",sep="")
+write.csv(df_p_InfC_r, file_save, row.names=FALSE)
+
+
+
+#### 2b. low community prev, residential care homes
+
+# remove everything except these objects from environment
+rm(list=setdiff(ls(), c("percentiles_model","Output_params","Output_model_IPC_other", "transmission_model", "initialiser","param_combo", "model_function_uncertainty")))
+
+# define LTCF_type
+LTCF_type<-"res"
+
+# read in parameter set
+run_name<-"_himpsteph_visprep_pRinitb_sizeb_R0base_b2base_b3base_pibase_mibase_dibase_ptncbase_ptcbase_ptncsbase_ftncbase_ftcbase_ftncsbase_taH_pfnbase_s2_p2LTCFb_IcHallI_prevl_p_drawn_SimpY_himpY_1500_sim"
+theta_matrix_1<-read.csv(file = paste0(Output_params,LTCF_type,run_name,"_params_before_combo.csv",sep=""),row.names = 1)
+theta_matrix_2<-read.csv(file = paste0(Output_params,LTCF_type,run_name,"_params.csv",sep=""),row.names = 1)
+
+# update parameter matrix
+n.sim<-1500
+source(param_combo) # generate combination parameters
+theta_matrix_combo<-data.frame(theta_matrix_combo)
+theta_matrix_2<-rbind(theta_matrix_1,theta_matrix_combo) # aggregate theta matrix
+
+# define number of parameter sets and simulations to run
+if(LTCF_type=="nh"){n.sim<-700}else if(LTCF_type=="res"){n.sim<-800}else{print("error")}
+
+# run model
+l_p_InfC_r<-lapply(1:n.sim,FUN=percentiles_model,N_sims_per_param_set = 600)
+
+# save outputs
+df_p_InfC_r<-rbindlist(l_p_InfC_r)
+file_save<-paste0(Output_model_IPC_other,LTCF_type,run_name,".csv",sep="")
+write.csv(df_p_InfC_r, file_save, row.names=FALSE)
+
+
+
+#### 3a. high community prev, nursing care homes
+
+# remove everything except these objects from environment
+rm(list=setdiff(ls(), c("percentiles_model","Output_params","Output_model_IPC_other", "transmission_model", "initialiser","param_combo", "model_function_uncertainty")))
+
+# define LTCF_type
+LTCF_type<-"nh"
+
+# read in parameter set
+run_name<-"_himpsteph_visprep_pRinitb_sizeb_R0base_b2base_b3base_pibase_mibase_dibase_ptncbase_ptcbase_ptncsbase_ftncbase_ftcbase_ftncsbase_taH_pfnbase_s2_p2LTCFb_IcHallI_prevh_p_drawn_SimpY_himpY_1500_sim"
+theta_matrix_1<-read.csv(file = paste0(Output_params,LTCF_type,run_name,"_params_before_combo.csv",sep=""),row.names = 1)
+theta_matrix_2<-read.csv(file = paste0(Output_params,LTCF_type,run_name,"_params.csv",sep=""),row.names = 1)
+
+
+# update parameter matrix
+n.sim<-1500
+source(param_combo) # generate combination parameters
+theta_matrix_combo<-data.frame(theta_matrix_combo)
+theta_matrix_2<-rbind(theta_matrix_1,theta_matrix_combo) # aggregate theta matrix
+
+# define number of parameter sets and simulations to run
+if(LTCF_type=="nh"){n.sim<-700}else if(LTCF_type=="res"){n.sim<-800}else{print("error")}
+
+# run model
+l_p_InfC_r<-lapply(1:n.sim,FUN=percentiles_model,N_sims_per_param_set = 600)
+
+# save outputs
+df_p_InfC_r<-rbindlist(l_p_InfC_r)
+file_save<-paste0(Output_model_IPC_other,LTCF_type,run_name,".csv",sep="")
+write.csv(df_p_InfC_r, file_save, row.names=FALSE)
+
+
+
+#### 3b. high community prev, residential care homes
+
+# remove everything except these objects from environment
+rm(list=setdiff(ls(), c("percentiles_model","Output_params","Output_model_IPC_other", "transmission_model", "initialiser","param_combo", "model_function_uncertainty")))
+
+# define LTCF_type
+LTCF_type<-"res"
+
+# read in parameter set
+run_name<-"_himpsteph_visprep_pRinitb_sizeb_R0base_b2base_b3base_pibase_mibase_dibase_ptncbase_ptcbase_ptncsbase_ftncbase_ftcbase_ftncsbase_taH_pfnbase_s2_p2LTCFb_IcHallI_prevh_p_drawn_SimpY_himpY_1500_sim"
+theta_matrix_1<-read.csv(file = paste0(Output_params,LTCF_type,run_name,"_params_before_combo.csv",sep=""),row.names = 1)
+theta_matrix_2<-read.csv(file = paste0(Output_params,LTCF_type,run_name,"_params.csv",sep=""),row.names = 1)
+
+# update parameter matrix
+n.sim<-1500
+source(param_combo) # generate combination parameters
+theta_matrix_combo<-data.frame(theta_matrix_combo)
+theta_matrix_2<-rbind(theta_matrix_1,theta_matrix_combo) # aggregate theta matrix
+
+# define number of parameter sets and simulations to run
+if(LTCF_type=="nh"){n.sim<-700}else if(LTCF_type=="res"){n.sim<-800}else{print("error")}
+
+# run model
+l_p_InfC_r<-lapply(1:n.sim,FUN=percentiles_model,N_sims_per_param_set = 600)
+
+# save outputs
+df_p_InfC_r<-rbindlist(l_p_InfC_r)
+file_save<-paste0(Output_model_IPC_other,LTCF_type,run_name,".csv",sep="")
+write.csv(df_p_InfC_r, file_save, row.names=FALSE)
+
+
+
 ######### No visitors ######### 
 
 #### 1a. baseline parameters, nursing care homes

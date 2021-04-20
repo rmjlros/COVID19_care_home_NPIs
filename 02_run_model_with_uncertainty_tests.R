@@ -257,9 +257,9 @@ write.csv(df_p_InfC_r, file_save, row.names=FALSE)
 
 ######### PCR ######### 
 
-###### Baseline scnario, PCR S 1xweek, R 1xmonth 
+###### Baseline scenario, PCR S 1xweek, R 1xmonth 
 
-#### 1a. baseline parameters, nursing care homes, no testing
+#### 1a. baseline parameters, nursing care homes
 
 # remove everything except these objects from environment
 rm(list=setdiff(ls(), c("percentiles_model","Output_params","Output_model_tests", "transmission_model", "initialiser","param_combo", "model_function_uncertainty")))
@@ -285,7 +285,7 @@ write.csv(df_p_InfC_r, file_save, row.names=FALSE)
 
 
 
-#### 1b. baseline parameters, residential care homes, no testing
+#### 1b. baseline parameters, residential care homes
 
 # remove everything except these objects from environment
 rm(list=setdiff(ls(), c("percentiles_model","Output_params","Output_model_tests", "transmission_model", "initialiser","param_combo", "model_function_uncertainty")))
@@ -311,7 +311,7 @@ write.csv(df_p_InfC_r, file_save, row.names=FALSE)
 
 
 
-#### 2a. low community prev, nursing care homes, no testing
+#### 2a. low community prev, nursing care homes
 
 # remove everything except these objects from environment
 rm(list=setdiff(ls(), c("percentiles_model","Output_params","Output_model_tests", "transmission_model", "initialiser","param_combo", "model_function_uncertainty")))
@@ -337,7 +337,7 @@ write.csv(df_p_InfC_r, file_save, row.names=FALSE)
 
 
 
-#### 2b. low community prev, residential care homes, no testing
+#### 2b. low community prev, residential care homes
 
 # remove everything except these objects from environment
 rm(list=setdiff(ls(), c("percentiles_model","Output_params","Output_model_tests", "transmission_model", "initialiser","param_combo", "model_function_uncertainty")))
@@ -363,7 +363,7 @@ write.csv(df_p_InfC_r, file_save, row.names=FALSE)
 
 
 
-#### 3a. high community prev, nursing care homes, no testing
+#### 3a. high community prev, nursing care homes
 
 # remove everything except these objects from environment
 rm(list=setdiff(ls(), c("percentiles_model","Output_params","Output_model_tests", "transmission_model", "initialiser","param_combo", "model_function_uncertainty")))
@@ -389,7 +389,7 @@ write.csv(df_p_InfC_r, file_save, row.names=FALSE)
 
 
 
-#### 3b. high community prev, residential care homes, no testing
+#### 3b. high community prev, residential care homes
 
 # remove everything except these objects from environment
 rm(list=setdiff(ls(), c("percentiles_model","Output_params","Output_model_tests", "transmission_model", "initialiser","param_combo", "model_function_uncertainty")))

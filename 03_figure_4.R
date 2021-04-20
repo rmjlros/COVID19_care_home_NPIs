@@ -52,8 +52,8 @@ outputs<-outputs%>%filter(time==30|time==90)%>%select(c("time","p.InfC_r_O", "p.
 
 # adding LTCF type
 outputs$LTCF_type<-outputs$scenario
-outputs[grep(outputs$LTCF_type, pattern = "_nh_"),]$LTCF_type<-"nursing care home"
-outputs[grep(outputs$LTCF_type, pattern = "_res_"),]$LTCF_type<-"residential care home"
+outputs[grep(outputs$LTCF_type, pattern = "nh_"),]$LTCF_type<-"nursing care home"
+outputs[grep(outputs$LTCF_type, pattern = "res_"),]$LTCF_type<-"residential care home"
 
 #-- R0
 outputs$R0<-outputs$scenario
