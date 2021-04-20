@@ -35,6 +35,8 @@ Data and `R` code to support Rosello *et al.*, (2021). Impact of non-pharmaceuti
 
 * **`00_prep_baseline_parameters.R`:** `R` script to define the parameters of the baseline scenario.
 
+* **`00_prep_parameter_scenario_dependencies.R`:** `R` script to define parameters of the selected scenario.
+
 * **`00_initialiser.R`:** `R` script to define initial conditions of model simulation.
 
 * **`00_model.R`:** `R` script to define transmission model.

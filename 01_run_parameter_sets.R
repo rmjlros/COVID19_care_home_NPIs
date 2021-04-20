@@ -19,6 +19,7 @@ library(reshape2)
 #### paths
 Output_params<-"Outputs/Params/"
 baseline_scenario<-"00_prep_baseline_parameters.R"
+param_scenario_dependencies<-"00_prep_parameter_scenario_dependencies.R"
 data_input<-"00_prep_data.R"
 params<-"00_prep_parameter_means.R"
 param_draws<-"00_prep_parameter_draws.R"
@@ -30,6 +31,9 @@ run_name_generator<-"00_prep_run_name.R"
  
 ### set parameters
 source(baseline_scenario)
+
+### set remaining parameters according to scenario selected
+source(param_scenario_dependencies)
 
 ### run name
 source(run_name_generator)
@@ -58,6 +62,9 @@ source(baseline_scenario)
 ## residential LTCF
 scenario_LTCF<-"res"
 
+### set remaining parameters according to scenario selected
+source(param_scenario_dependencies)
+
 ### run name
 source(run_name_generator)
 
@@ -84,6 +91,9 @@ source(baseline_scenario)
 ### changes from baseline
 ## community prevalence
 scenario_community_prev<-"prevh" 
+
+### set remaining parameters according to scenario selected
+source(param_scenario_dependencies)
 
 ### run name
 source(run_name_generator)
@@ -114,6 +124,9 @@ scenario_LTCF<-"res"
 ## community prevalence
 scenario_community_prev<-"prevh" 
 
+### set remaining parameters according to scenario selected
+source(param_scenario_dependencies)
+
 ### run name
 source(run_name_generator)
 
@@ -140,6 +153,9 @@ source(baseline_scenario)
 ### changes from baseline
 ## community prevalence
 scenario_community_prev<-"prevl" 
+
+### set remaining parameters according to scenario selected
+source(param_scenario_dependencies)
 
 ### run name
 source(run_name_generator)
@@ -169,6 +185,9 @@ source(baseline_scenario)
 scenario_LTCF<-"res"
 ## community prevalence
 scenario_community_prev<-"prevl" 
+
+### set remaining parameters according to scenario selected
+source(param_scenario_dependencies)
 
 ### run name
 source(run_name_generator)
@@ -201,6 +220,9 @@ if(scenario_beta=="change_R0"){
   changed_R0_a<-1# change R0 pathway a (end up symptomatic)
   changed_mR0_b<-0.5 # multiply by this to get R0 pathway b (stay asymptomatic), baseline is 0.5
 }
+
+### set remaining parameters according to scenario selected
+source(param_scenario_dependencies)
 
 ### run name
 source(run_name_generator)
@@ -236,6 +258,9 @@ if(scenario_beta=="change_R0"){
   changed_mR0_b<-0.5 # multiply by this to get R0 pathway b (stay asymptomatic), baseline is 0.5
 }
 
+### set remaining parameters according to scenario selected
+source(param_scenario_dependencies)
+
 ### run name
 source(run_name_generator)
 
@@ -267,6 +292,9 @@ if(scenario_beta=="change_R0"){
   changed_R0_a<-3# change R0 pathway a (end up symptomatic)
   changed_mR0_b<-0.5 # multiply by this to get R0 pathway b (stay asymptomatic), baseline is 0.5
 }
+
+### set remaining parameters according to scenario selected
+source(param_scenario_dependencies)
 
 ### run name
 source(run_name_generator)
@@ -302,6 +330,9 @@ if(scenario_beta=="change_R0"){
   changed_mR0_b<-0.5 # multiply by this to get R0 pathway b (stay asymptomatic), baseline is 0.5
 }
 
+### set remaining parameters according to scenario selected
+source(param_scenario_dependencies)
+
 ### run name
 source(run_name_generator)
 
@@ -328,6 +359,9 @@ source(baseline_scenario)
 ### changes from baseline
 ## visitors
 scenario_v<-"N" #scenario without visitors
+
+### set remaining parameters according to scenario selected
+source(param_scenario_dependencies)
 
 ### run name
 source(run_name_generator)
@@ -358,6 +392,9 @@ scenario_LTCF<-"res"
 ## visitors
 scenario_v<-"N" #scenario without visitors
 
+### set remaining parameters according to scenario selected
+source(param_scenario_dependencies)
+
 ### run name
 source(run_name_generator)
 
@@ -386,6 +423,9 @@ source(baseline_scenario)
 scenario_community_prev<-"prevl" 
 ## visitors
 scenario_v<-"N" #scenario without visitors
+
+### set remaining parameters according to scenario selected
+source(param_scenario_dependencies)
 
 ### run name
 source(run_name_generator)
@@ -418,6 +458,9 @@ scenario_community_prev<-"prevl"
 ## visitors
 scenario_v<-"N" #scenario without visitors
 
+### set remaining parameters according to scenario selected
+source(param_scenario_dependencies)
+
 ### run name
 source(run_name_generator)
 
@@ -446,6 +489,9 @@ source(baseline_scenario)
 scenario_community_prev<-"prevh" 
 ## visitors
 scenario_v<-"N" #scenario without visitors
+
+### set remaining parameters according to scenario selected
+source(param_scenario_dependencies)
 
 ### run name
 source(run_name_generator)
@@ -478,6 +524,9 @@ scenario_community_prev<-"prevh"
 ## visitors
 scenario_v<-"N" #scenario without visitors
 
+### set remaining parameters according to scenario selected
+source(param_scenario_dependencies)
+
 ### run name
 source(run_name_generator)
 
@@ -504,6 +553,9 @@ source(baseline_scenario)
 ### changes from baseline
 ## hospital infectious importations
 scenario_h_inf_imp<-"N"
+
+### set remaining parameters according to scenario selected
+source(param_scenario_dependencies)
 
 ### run name
 source(run_name_generator)
@@ -534,6 +586,9 @@ scenario_LTCF<-"res"
 ## hospital infectious importations
 scenario_h_inf_imp<-"N"
 
+### set remaining parameters according to scenario selected
+source(param_scenario_dependencies)
+
 ### run name
 source(run_name_generator)
 
@@ -562,6 +617,9 @@ source(baseline_scenario)
 scenario_community_prev<-"prevl" 
 ## hospital infectious importations
 scenario_h_inf_imp<-"N"
+
+### set remaining parameters according to scenario selected
+source(param_scenario_dependencies)
 
 ### run name
 source(run_name_generator)
@@ -594,6 +652,9 @@ scenario_community_prev<-"prevl"
 ## hospital infectious importations
 scenario_h_inf_imp<-"N"
 
+### set remaining parameters according to scenario selected
+source(param_scenario_dependencies)
+
 ### run name
 source(run_name_generator)
 
@@ -622,6 +683,9 @@ source(baseline_scenario)
 scenario_community_prev<-"prevh" 
 ## hospital infectious importations
 scenario_h_inf_imp<-"N"
+
+### set remaining parameters according to scenario selected
+source(param_scenario_dependencies)
 
 ### run name
 source(run_name_generator)
@@ -654,6 +718,9 @@ scenario_community_prev<-"prevh"
 ## hospital infectious importations
 scenario_h_inf_imp<-"N"
 
+### set remaining parameters according to scenario selected
+source(param_scenario_dependencies)
+
 ### run name
 source(run_name_generator)
 
@@ -682,6 +749,9 @@ source(baseline_scenario)
 scenario_staff_other_LTCF<-"change_p_working_another_LTCF"
 # set value if change_p_working_another_LTCF
 if(scenario_staff_other_LTCF=="change_p_working_another_LTCF"){changed_p_working_another_LTCF<-0} 
+
+### set remaining parameters according to scenario selected
+source(param_scenario_dependencies)
 
 ### run name
 source(run_name_generator)
@@ -714,6 +784,9 @@ scenario_staff_other_LTCF<-"change_p_working_another_LTCF"
 # set value if change_p_working_another_LTCF
 if(scenario_staff_other_LTCF=="change_p_working_another_LTCF"){changed_p_working_another_LTCF<-0} 
 
+### set remaining parameters according to scenario selected
+source(param_scenario_dependencies)
+
 ### run name
 source(run_name_generator)
 
@@ -744,6 +817,9 @@ scenario_community_prev<-"prevl"
 scenario_staff_other_LTCF<-"change_p_working_another_LTCF"
 # set value if change_p_working_another_LTCF
 if(scenario_staff_other_LTCF=="change_p_working_another_LTCF"){changed_p_working_another_LTCF<-0} 
+
+### set remaining parameters according to scenario selected
+source(param_scenario_dependencies)
 
 ### run name
 source(run_name_generator)
@@ -778,6 +854,9 @@ scenario_staff_other_LTCF<-"change_p_working_another_LTCF"
 # set value if change_p_working_another_LTCF
 if(scenario_staff_other_LTCF=="change_p_working_another_LTCF"){changed_p_working_another_LTCF<-0} 
 
+### set remaining parameters according to scenario selected
+source(param_scenario_dependencies)
+
 ### run name
 source(run_name_generator)
 
@@ -808,6 +887,9 @@ scenario_community_prev<-"prevh"
 scenario_staff_other_LTCF<-"change_p_working_another_LTCF"
 # set value if change_p_working_another_LTCF
 if(scenario_staff_other_LTCF=="change_p_working_another_LTCF"){changed_p_working_another_LTCF<-0} 
+
+### set remaining parameters according to scenario selected
+source(param_scenario_dependencies)
 
 ### run name
 source(run_name_generator)
@@ -842,6 +924,9 @@ scenario_staff_other_LTCF<-"change_p_working_another_LTCF"
 # set value if change_p_working_another_LTCF
 if(scenario_staff_other_LTCF=="change_p_working_another_LTCF"){changed_p_working_another_LTCF<-0} 
 
+### set remaining parameters according to scenario selected
+source(param_scenario_dependencies)
+
 ### run name
 source(run_name_generator)
 
@@ -868,6 +953,9 @@ source(baseline_scenario)
 ### changes from baseline
 ## no importations from staff 
 scenario_staff_imp<-"N"
+
+### set remaining parameters according to scenario selected
+source(param_scenario_dependencies)
 
 ### run name
 source(run_name_generator)
@@ -898,6 +986,9 @@ scenario_LTCF<-"res"
 ## no importations from staff 
 scenario_staff_imp<-"N"
 
+### set remaining parameters according to scenario selected
+source(param_scenario_dependencies)
+
 ### run name
 source(run_name_generator)
 
@@ -926,6 +1017,9 @@ source(baseline_scenario)
 scenario_community_prev<-"prevl" 
 ## no importations from staff 
 scenario_staff_imp<-"N"
+
+### set remaining parameters according to scenario selected
+source(param_scenario_dependencies)
 
 ### run name
 source(run_name_generator)
@@ -958,6 +1052,9 @@ scenario_community_prev<-"prevl"
 ## no importations from staff 
 scenario_staff_imp<-"N"
 
+### set remaining parameters according to scenario selected
+source(param_scenario_dependencies)
+
 ### run name
 source(run_name_generator)
 
@@ -986,6 +1083,9 @@ source(baseline_scenario)
 scenario_community_prev<-"prevh" 
 ## no importations from staff 
 scenario_staff_imp<-"N"
+
+### set remaining parameters according to scenario selected
+source(param_scenario_dependencies)
 
 ### run name
 source(run_name_generator)
@@ -1017,6 +1117,9 @@ scenario_LTCF<-"res"
 scenario_community_prev<-"prevh" 
 ## no importations from staff 
 scenario_staff_imp<-"N"
+
+### set remaining parameters according to scenario selected
+source(param_scenario_dependencies)
 
 ### run name
 source(run_name_generator)
@@ -1054,6 +1157,9 @@ scenario_delay_isolation<-"change"
 if(scenario_delay_isolation=="change"){changed_delay_isolation<-0.25
 changed_delay_isolation_c<-1} #changes delay_isolation to this value
 
+### set remaining parameters according to scenario selected
+source(param_scenario_dependencies)
+
 ### run name
 source(run_name_generator)
 
@@ -1083,6 +1189,9 @@ scenario_delay_isolation<-"change"
 # set value if scenario_delay_isolation=="change"
 if(scenario_delay_isolation=="change"){changed_delay_isolation<-0.25
 changed_delay_isolation_c<-0.25} #changes delay_isolation to this value
+
+### set remaining parameters according to scenario selected
+source(param_scenario_dependencies)
 
 ### run name
 source(run_name_generator)
@@ -1117,6 +1226,9 @@ scenario_m_i<-"change_m_i"
 # set value if change_m_i
 if(scenario_m_i=="change_m_i"){changed_m_i<-0.05} #changes m_i to this value
 
+### set remaining parameters according to scenario selected
+source(param_scenario_dependencies)
+
 ### run name
 source(run_name_generator)
 
@@ -1147,6 +1259,9 @@ scenario_beta2<-"change_beta2"
 if(scenario_beta2=="change_beta2"){
   changed_m_beta2<-0.25
 }
+
+### set remaining parameters according to scenario selected
+source(param_scenario_dependencies)
 
 ### run name
 source(run_name_generator)
