@@ -257,6 +257,164 @@ write.csv(df_p_InfC_r, file_save, row.names=FALSE)
 
 ######### PCR ######### 
 
+###### Baseline scnario, PCR S 1xweek, R 1xmonth 
+
+#### 1a. baseline parameters, nursing care homes, no testing
+
+# remove everything except these objects from environment
+rm(list=setdiff(ls(), c("percentiles_model","Output_params","Output_model_tests", "transmission_model", "initialiser","param_combo", "model_function_uncertainty")))
+
+# define LTCF_type
+LTCF_type<-"nh"
+
+# read in parameter set
+run_name<-"_himpsteph_visprep_pRinitb_sizeb_R0base_b2base_b3base_pibase_mibase_dibase_ptncbase_ptcbase_ptncsbase_ftncbase_ftcbase_ftncsbase_taH_pfnbase_s2_p2LTCFb_IcHallI_prevm_p_drawn_SimpY_himpY_1500_sim"
+theta_matrix_1<-read.csv(file = paste0(Output_params,LTCF_type,run_name,"_params_before_combo.csv",sep=""),row.names = 1)
+theta_matrix_2<-read.csv(file = paste0(Output_params,LTCF_type,run_name,"_params.csv",sep=""),row.names = 1)
+
+# define number of parameter sets and simulations to run
+if(LTCF_type=="nh"){n.sim<-700}else if(LTCF_type=="res"){n.sim<-800}else{print("error")}
+
+# run model
+l_p_InfC_r<-lapply(1:n.sim,FUN=percentiles_model,N_sims_per_param_set = 600)
+
+# save outputs
+df_p_InfC_r<-rbindlist(l_p_InfC_r)
+file_save<-paste0(Output_model_tests,LTCF_type,run_name,".csv",sep="")
+write.csv(df_p_InfC_r, file_save, row.names=FALSE)
+
+
+
+#### 1b. baseline parameters, residential care homes, no testing
+
+# remove everything except these objects from environment
+rm(list=setdiff(ls(), c("percentiles_model","Output_params","Output_model_tests", "transmission_model", "initialiser","param_combo", "model_function_uncertainty")))
+
+# define LTCF_type
+LTCF_type<-"res"
+
+# read in parameter set
+run_name<-"_himpsteph_visprep_pRinitb_sizeb_R0base_b2base_b3base_pibase_mibase_dibase_ptncbase_ptcbase_ptncsbase_ftncbase_ftcbase_ftncsbase_taH_pfnbase_s2_p2LTCFb_IcHallI_prevm_p_drawn_SimpY_himpY_1500_sim"
+theta_matrix_1<-read.csv(file = paste0(Output_params,LTCF_type,run_name,"_params_before_combo.csv",sep=""),row.names = 1)
+theta_matrix_2<-read.csv(file = paste0(Output_params,LTCF_type,run_name,"_params.csv",sep=""),row.names = 1)
+
+# define number of parameter sets and simulations to run
+if(LTCF_type=="nh"){n.sim<-700}else if(LTCF_type=="res"){n.sim<-800}else{print("error")}
+
+# run model
+l_p_InfC_r<-lapply(1:n.sim,FUN=percentiles_model,N_sims_per_param_set = 600)
+
+# save outputs
+df_p_InfC_r<-rbindlist(l_p_InfC_r)
+file_save<-paste0(Output_model_tests,LTCF_type,run_name,".csv",sep="")
+write.csv(df_p_InfC_r, file_save, row.names=FALSE)
+
+
+
+#### 2a. low community prev, nursing care homes, no testing
+
+# remove everything except these objects from environment
+rm(list=setdiff(ls(), c("percentiles_model","Output_params","Output_model_tests", "transmission_model", "initialiser","param_combo", "model_function_uncertainty")))
+
+# define LTCF_type
+LTCF_type<-"nh"
+
+# read in parameter set
+run_name<-"_himpsteph_visprep_pRinitb_sizeb_R0base_b2base_b3base_pibase_mibase_dibase_ptncbase_ptcbase_ptncsbase_ftncbase_ftcbase_ftncsbase_taH_pfnbase_s2_p2LTCFb_IcHallI_prevl_p_drawn_SimpY_himpY_1500_sim"
+theta_matrix_1<-read.csv(file = paste0(Output_params,LTCF_type,run_name,"_params_before_combo.csv",sep=""),row.names = 1)
+theta_matrix_2<-read.csv(file = paste0(Output_params,LTCF_type,run_name,"_params.csv",sep=""),row.names = 1)
+
+# define number of parameter sets and simulations to run
+if(LTCF_type=="nh"){n.sim<-700}else if(LTCF_type=="res"){n.sim<-800}else{print("error")}
+
+# run model
+l_p_InfC_r<-lapply(1:n.sim,FUN=percentiles_model,N_sims_per_param_set = 600)
+
+# save outputs
+df_p_InfC_r<-rbindlist(l_p_InfC_r)
+file_save<-paste0(Output_model_tests,LTCF_type,run_name,".csv",sep="")
+write.csv(df_p_InfC_r, file_save, row.names=FALSE)
+
+
+
+#### 2b. low community prev, residential care homes, no testing
+
+# remove everything except these objects from environment
+rm(list=setdiff(ls(), c("percentiles_model","Output_params","Output_model_tests", "transmission_model", "initialiser","param_combo", "model_function_uncertainty")))
+
+# define LTCF_type
+LTCF_type<-"res"
+
+# read in parameter set
+run_name<-"_himpsteph_visprep_pRinitb_sizeb_R0base_b2base_b3base_pibase_mibase_dibase_ptncbase_ptcbase_ptncsbase_ftncbase_ftcbase_ftncsbase_taH_pfnbase_s2_p2LTCFb_IcHallI_prevl_p_drawn_SimpY_himpY_1500_sim"
+theta_matrix_1<-read.csv(file = paste0(Output_params,LTCF_type,run_name,"_params_before_combo.csv",sep=""),row.names = 1)
+theta_matrix_2<-read.csv(file = paste0(Output_params,LTCF_type,run_name,"_params.csv",sep=""),row.names = 1)
+
+# define number of parameter sets and simulations to run
+if(LTCF_type=="nh"){n.sim<-700}else if(LTCF_type=="res"){n.sim<-800}else{print("error")}
+
+# run model
+l_p_InfC_r<-lapply(1:n.sim,FUN=percentiles_model,N_sims_per_param_set = 600)
+
+# save outputs
+df_p_InfC_r<-rbindlist(l_p_InfC_r)
+file_save<-paste0(Output_model_tests,LTCF_type,run_name,".csv",sep="")
+write.csv(df_p_InfC_r, file_save, row.names=FALSE)
+
+
+
+#### 3a. high community prev, nursing care homes, no testing
+
+# remove everything except these objects from environment
+rm(list=setdiff(ls(), c("percentiles_model","Output_params","Output_model_tests", "transmission_model", "initialiser","param_combo", "model_function_uncertainty")))
+
+# define LTCF_type
+LTCF_type<-"nh"
+
+# read in parameter set
+run_name<-"_himpsteph_visprep_pRinitb_sizeb_R0base_b2base_b3base_pibase_mibase_dibase_ptncbase_ptcbase_ptncsbase_ftncbase_ftcbase_ftncsbase_taH_pfnbase_s2_p2LTCFb_IcHallI_prevh_p_drawn_SimpY_himpY_1500_sim"
+theta_matrix_1<-read.csv(file = paste0(Output_params,LTCF_type,run_name,"_params_before_combo.csv",sep=""),row.names = 1)
+theta_matrix_2<-read.csv(file = paste0(Output_params,LTCF_type,run_name,"_params.csv",sep=""),row.names = 1)
+
+# define number of parameter sets and simulations to run
+if(LTCF_type=="nh"){n.sim<-700}else if(LTCF_type=="res"){n.sim<-800}else{print("error")}
+
+# run model
+l_p_InfC_r<-lapply(1:n.sim,FUN=percentiles_model,N_sims_per_param_set = 600)
+
+# save outputs
+df_p_InfC_r<-rbindlist(l_p_InfC_r)
+file_save<-paste0(Output_model_tests,LTCF_type,run_name,".csv",sep="")
+write.csv(df_p_InfC_r, file_save, row.names=FALSE)
+
+
+
+#### 3b. high community prev, residential care homes, no testing
+
+# remove everything except these objects from environment
+rm(list=setdiff(ls(), c("percentiles_model","Output_params","Output_model_tests", "transmission_model", "initialiser","param_combo", "model_function_uncertainty")))
+
+# define LTCF_type
+LTCF_type<-"res"
+
+# read in parameter set
+run_name<-"_himpsteph_visprep_pRinitb_sizeb_R0base_b2base_b3base_pibase_mibase_dibase_ptncbase_ptcbase_ptncsbase_ftncbase_ftcbase_ftncsbase_taH_pfnbase_s2_p2LTCFb_IcHallI_prevh_p_drawn_SimpY_himpY_1500_sim"
+theta_matrix_1<-read.csv(file = paste0(Output_params,LTCF_type,run_name,"_params_before_combo.csv",sep=""),row.names = 1)
+theta_matrix_2<-read.csv(file = paste0(Output_params,LTCF_type,run_name,"_params.csv",sep=""),row.names = 1)
+
+# define number of parameter sets and simulations to run
+if(LTCF_type=="nh"){n.sim<-700}else if(LTCF_type=="res"){n.sim<-800}else{print("error")}
+
+# run model
+l_p_InfC_r<-lapply(1:n.sim,FUN=percentiles_model,N_sims_per_param_set = 600)
+
+# save outputs
+df_p_InfC_r<-rbindlist(l_p_InfC_r)
+file_save<-paste0(Output_model_tests,LTCF_type,run_name,".csv",sep="")
+write.csv(df_p_InfC_r, file_save, row.names=FALSE)
+
+
+
 ###### PCR 1xday R, PCR 1xday S
 
 #### 1a. baseline parameters, nursing care homes
