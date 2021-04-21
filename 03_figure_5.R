@@ -35,7 +35,7 @@ R0_scenario<-2
 
 all_dfs<-list()
 
-a<-list.files(Output,pattern="outputs")
+a<-list.files(Output)
 
 for(i in 1:length(a)){
   all_dfs[[i]]<-read.csv(paste0(Output,a[i]))
@@ -52,8 +52,8 @@ outputs<-outputs%>%filter(time==30|time==90)%>%select(c("time","p.InfC_r_O", "p.
 
 # adding LTCF type
 outputs$LTCF_type<-outputs$scenario
-outputs[grep(outputs$LTCF_type, pattern = "_nh_"),]$LTCF_type<-"nursing care home"
-outputs[grep(outputs$LTCF_type, pattern = "_res_"),]$LTCF_type<-"residential care home"
+outputs[grep(outputs$LTCF_type, pattern = "nh_"),]$LTCF_type<-"nursing care home"
+outputs[grep(outputs$LTCF_type, pattern = "res_"),]$LTCF_type<-"residential care home"
 
 #-- R0
 outputs$R0<-outputs$scenario
@@ -104,7 +104,7 @@ if(plot_type=="IPC_other"){
   p_more_than_0_residents_Ic_30d[grep(p_more_than_0_residents_Ic_30d$interventions, pattern = "pi0.95_mi0.05"),]$interventions<-"isolating  95%, 95% effective \n(from 80% at 75% effectiveness)"  
   p_more_than_0_residents_Ic_30d[grep(p_more_than_0_residents_Ic_30d$interventions, pattern = "b20.25"),]$interventions<-"preventing 75% of transmission once detected \n(from 50%)"   
   p_more_than_0_residents_Ic_30d[grep(p_more_than_0_residents_Ic_30d$interventions, pattern = "p2LTCF0"),]$interventions<-"no S work at another care home \n(from 1%)"  
-  p_more_than_0_residents_Ic_30d[grep(p_more_than_0_residents_Ic_30d$interventions, pattern = "2021"),]$interventions<-"baseline"  
+  p_more_than_0_residents_Ic_30d[grep(p_more_than_0_residents_Ic_30d$interventions, pattern = "p2LTCFb"),]$interventions<-"baseline"  
   
   
   # calculate difference from no testing or from baseline
@@ -140,7 +140,7 @@ if(plot_type=="IPC_other"){
   p_more_than_9_residents_Ic_90d[grep(p_more_than_9_residents_Ic_90d$interventions, pattern = "pi0.95_mi0.05"),]$interventions<-"isolating  95%, 95% effective \n(from 80% at 75% effectiveness)"  
   p_more_than_9_residents_Ic_90d[grep(p_more_than_9_residents_Ic_90d$interventions, pattern = "b20.25"),]$interventions<-"preventing 75% of transmission once detected \n(from 50%)"   
   p_more_than_9_residents_Ic_90d[grep(p_more_than_9_residents_Ic_90d$interventions, pattern = "p2LTCF0"),]$interventions<-"no S work at another care home\n(from 1%)"  
-  p_more_than_9_residents_Ic_90d[grep(p_more_than_9_residents_Ic_90d$interventions, pattern = "2021"),]$interventions<-"baseline"  
+  p_more_than_9_residents_Ic_90d[grep(p_more_than_9_residents_Ic_90d$interventions, pattern = "p2LTCFb"),]$interventions<-"baseline"  
   
   
   # calculate difference from no testing or from baseline
