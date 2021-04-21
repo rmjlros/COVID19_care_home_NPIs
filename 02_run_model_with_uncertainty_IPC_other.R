@@ -15,6 +15,7 @@ require(pomp)
 #### paths
 Output_params<-"Outputs/Params/"
 Output_model_IPC_other<-"Outputs/Model/IPC_other_strategies/"
+Output_model<-"Outputs/Model"
 transmission_model<-"00_model.R"
 initialiser<-"00_initialiser.R"
 param_combo<-"00_prep_parameter_combo.R"
@@ -1407,7 +1408,7 @@ l_p_InfC_r<-lapply(1:n.sim,FUN=percentiles_model,N_sims_per_param_set = 600)
 
 # save outputs
 df_p_InfC_r<-rbindlist(l_p_InfC_r)
-file_save<-paste0(Output_model_IPC_other,LTCF_type,run_name,".csv",sep="")
+file_save<-paste0(Output_model,LTCF_type,run_name,".csv",sep="")
 write.csv(df_p_InfC_r, file_save, row.names=FALSE)
 
 
@@ -1415,7 +1416,7 @@ write.csv(df_p_InfC_r, file_save, row.names=FALSE)
 #### 1b. baseline parameters, residential care homes
 
 # remove everything except these objects from environment
-rm(list=setdiff(ls(), c("percentiles_model","Output_params","Output_model_IPC_other", "transmission_model", "initialiser","param_combo", "model_function_uncertainty")))
+rm(list=setdiff(ls(), c("percentiles_model","Output_params","Output_model", "transmission_model", "initialiser","param_combo", "model_function_uncertainty")))
 
 # define LTCF_type
 LTCF_type<-"res"
@@ -1446,7 +1447,7 @@ l_p_InfC_r<-lapply(1:n.sim,FUN=percentiles_model,N_sims_per_param_set = 600)
 
 # save outputs
 df_p_InfC_r<-rbindlist(l_p_InfC_r)
-file_save<-paste0(Output_model_IPC_other,LTCF_type,run_name,".csv",sep="")
+file_save<-paste0(Output_model,LTCF_type,run_name,".csv",sep="")
 write.csv(df_p_InfC_r, file_save, row.names=FALSE)
 
 
@@ -1454,7 +1455,7 @@ write.csv(df_p_InfC_r, file_save, row.names=FALSE)
 #### 2a. low community prev, nursing care homes
 
 # remove everything except these objects from environment
-rm(list=setdiff(ls(), c("percentiles_model","Output_params","Output_model_IPC_other", "transmission_model", "initialiser","param_combo", "model_function_uncertainty")))
+rm(list=setdiff(ls(), c("percentiles_model","Output_params","Output_model", "transmission_model", "initialiser","param_combo", "model_function_uncertainty")))
 
 # define LTCF_type
 LTCF_type<-"nh"
@@ -1485,7 +1486,7 @@ l_p_InfC_r<-lapply(1:n.sim,FUN=percentiles_model,N_sims_per_param_set = 600)
 
 # save outputs
 df_p_InfC_r<-rbindlist(l_p_InfC_r)
-file_save<-paste0(Output_model_IPC_other,LTCF_type,run_name,".csv",sep="")
+file_save<-paste0(Output_model,LTCF_type,run_name,".csv",sep="")
 write.csv(df_p_InfC_r, file_save, row.names=FALSE)
 
 
@@ -1493,7 +1494,7 @@ write.csv(df_p_InfC_r, file_save, row.names=FALSE)
 #### 2b. low community prev, residential care homes
 
 # remove everything except these objects from environment
-rm(list=setdiff(ls(), c("percentiles_model","Output_params","Output_model_IPC_other", "transmission_model", "initialiser","param_combo", "model_function_uncertainty")))
+rm(list=setdiff(ls(), c("percentiles_model","Output_params","Output_model", "transmission_model", "initialiser","param_combo", "model_function_uncertainty")))
 
 # define LTCF_type
 LTCF_type<-"res"
@@ -1524,7 +1525,7 @@ l_p_InfC_r<-lapply(1:n.sim,FUN=percentiles_model,N_sims_per_param_set = 600)
 
 # save outputs
 df_p_InfC_r<-rbindlist(l_p_InfC_r)
-file_save<-paste0(Output_model_IPC_other,LTCF_type,run_name,".csv",sep="")
+file_save<-paste0(Output_model,LTCF_type,run_name,".csv",sep="")
 write.csv(df_p_InfC_r, file_save, row.names=FALSE)
 
 
@@ -1532,7 +1533,7 @@ write.csv(df_p_InfC_r, file_save, row.names=FALSE)
 #### 3a. high community prev, nursing care homes
 
 # remove everything except these objects from environment
-rm(list=setdiff(ls(), c("percentiles_model","Output_params","Output_model_IPC_other", "transmission_model", "initialiser","param_combo", "model_function_uncertainty")))
+rm(list=setdiff(ls(), c("percentiles_model","Output_params","Output_model", "transmission_model", "initialiser","param_combo", "model_function_uncertainty")))
 
 # define LTCF_type
 LTCF_type<-"nh"
@@ -1563,7 +1564,7 @@ l_p_InfC_r<-lapply(1:n.sim,FUN=percentiles_model,N_sims_per_param_set = 600)
 
 # save outputs
 df_p_InfC_r<-rbindlist(l_p_InfC_r)
-file_save<-paste0(Output_model_IPC_other,LTCF_type,run_name,".csv",sep="")
+file_save<-paste0(Output_model,LTCF_type,run_name,".csv",sep="")
 write.csv(df_p_InfC_r, file_save, row.names=FALSE)
 
 
@@ -1571,7 +1572,7 @@ write.csv(df_p_InfC_r, file_save, row.names=FALSE)
 #### 3b. high community prev, residential care homes
 
 # remove everything except these objects from environment
-rm(list=setdiff(ls(), c("percentiles_model","Output_params","Output_model_IPC_other", "transmission_model", "initialiser","param_combo", "model_function_uncertainty")))
+rm(list=setdiff(ls(), c("percentiles_model","Output_params","Output_model", "transmission_model", "initialiser","param_combo", "model_function_uncertainty")))
 
 # define LTCF_type
 LTCF_type<-"res"
@@ -1602,5 +1603,5 @@ l_p_InfC_r<-lapply(1:n.sim,FUN=percentiles_model,N_sims_per_param_set = 600)
 
 # save outputs
 df_p_InfC_r<-rbindlist(l_p_InfC_r)
-file_save<-paste0(Output_model_IPC_other,LTCF_type,run_name,".csv",sep="")
+file_save<-paste0(Output_model,LTCF_type,run_name,".csv",sep="")
 write.csv(df_p_InfC_r, file_save, row.names=FALSE)
