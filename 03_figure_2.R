@@ -261,5 +261,5 @@ plot_1<-(p_O_r+
 
 
 ## save plot
-ggsave(plot_1, file=paste0(Plots, Sys.Date(),"Fig2.png"), width = 12, height=10)
+ggsave(plot_1, file=paste0(Plots, "Fig2.png"), width = 12, height=10)
 

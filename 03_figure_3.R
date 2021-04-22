@@ -80,8 +80,8 @@ rm(all_dfs)
 
 # adding LTCF type
 df_all$LTCF_type<-df_all$scenario
-df_all[grep(df_all$LTCF_type, pattern = "_nh_"),]$LTCF_type<-"nursing care home"
-df_all[grep(df_all$LTCF_type, pattern = "_res_"),]$LTCF_type<-"residential care home"
+df_all[grep(df_all$LTCF_type, pattern = "nh_"),]$LTCF_type<-"nursing care home"
+df_all[grep(df_all$LTCF_type, pattern = "res_"),]$LTCF_type<-"residential care home"
 
 #-- R0
 df_all$R0<-df_all$scenario
@@ -455,4 +455,4 @@ plot_by_cprev<-(p_Inf_r_low_prev+ylim(c(0,1))+
 
 
 ## save plots
-ggsave(plot_by_cprev, file=paste0(Plots, Sys.Date(),"Fig3.png"), width = 12, height=10)
+ggsave(plot_by_cprev, file=paste0(Plots, "Fig3.png"), width = 12, height=10)

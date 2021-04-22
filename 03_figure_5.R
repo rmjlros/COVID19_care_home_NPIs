@@ -341,8 +341,8 @@ plot1_res<-plot_more_than_0_residents_Ic_30d_res/plot_more_than_9_residents_Ic_9
 plot1_res<-plot1_res + plot_layout(guides = "collect")
 
 ### SAVE
-ggsave(plot1_nh, file=paste0(Plots,Sys.Date(),"Fig5.png"), width=30, height=20, units = "cm")
-ggsave(plot1_res, file=paste0(Plots,Sys.Date(),"FigS18.png"), width=30, height=20, units = "cm")
+ggsave(plot1_nh, file=paste0(Plots,"Fig5.png"), width=30, height=20, units = "cm")
+ggsave(plot1_res, file=paste0(Plots,"FigS18.png"), width=30, height=20, units = "cm")
 
 
 
