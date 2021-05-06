@@ -5,8 +5,6 @@
 
 # R script to read in publicly available data and format
 
-wdir<-"~/Documents/GitHub/COVID19_care_home_NPIs/"
-setwd(wdir)
 
 ### paths
   
