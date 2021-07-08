@@ -1,6 +1,6 @@
 # COVID19_care_home_NPIs
 
-Data and `R` code to support Rosello *et al.*, (2021). Impact of non-pharmaceutical interventions on SARS-CoV-2 outbreaks in English care homes: a modelling study. *The Lancet Public Health* (submitted). 
+Data and `R` code to support Rosello *et al.*, (2021). Impact of non-pharmaceutical interventions on SARS-CoV-2 outbreaks in English care homes: a modelling study. *BMC Infectious Diseases* (submitted). 
 
 
 --------------------------------------------------------------------------------
